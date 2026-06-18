@@ -27,4 +27,4 @@ npm start
 - **Permissions:** Read Messages, Send Messages, Add Reactions, Read Message History
 
 ---
-## if you have problem or question send a message in discord @amounknown.
+## if you have problem or question create a issue on this page (https://github.com/Amo-Unknown/CountBot-Discord/issues)
