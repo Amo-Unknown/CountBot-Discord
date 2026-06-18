@@ -10,10 +10,10 @@ const client = new Client({
   ],
 });
 
-// In-memory store: guildId -> { channelId, step, currentCount, lastUserId }
+// In-memory store: guildId = { channelId, step, currentCount, lastUserId }
 const gameState = new Map();
 
-// --- Register slash commands on startup ---
+// Register slash command
 client.once('ready', async () => {
   console.log(`Logged in as ${client.user.tag}`);
 
@@ -48,7 +48,7 @@ client.once('ready', async () => {
   }
 });
 
-// --- Helper: check if member has any of the required permissions ---
+// check if member has any of the required permissions ---
 function hasRequiredPermission(member) {
   const required = [
     PermissionFlagsBits.ManageMessages,
@@ -65,7 +65,7 @@ client.on('interactionCreate', async interaction => {
 
   const { commandName, guildId, member } = interaction;
 
-  // /setup - any admin can set the counting channel
+  // /setup any admin can set the counting channel
   if (commandName === 'setup') {
     if (!hasRequiredPermission(member)) {
       return interaction.reply({
@@ -145,7 +145,7 @@ client.on('messageCreate', async message => {
   const expectedNext = currentCount + step;
   const input = parseInt(message.content.trim(), 10);
 
-  // Not a number → ignore silently
+  // Not a number = ignore silently
   if (isNaN(input)) return;
 
   if (input === expectedNext) {
